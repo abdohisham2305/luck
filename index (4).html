@@ -28,6 +28,7 @@
     color: var(--ivory);
     font-family: 'Tajawal', sans-serif;
     overflow-x: hidden;
+    width: 100%;
   }
 
   /* ── 3D CANVAS ── */
@@ -54,7 +55,8 @@
     letter-spacing: 1px;
   }
   .nav-links { display:flex; gap:36px; list-style:none; }
-  .nav-links a { color: var(--bone); text-decoration:none; font-size:14px; font-weight:500; letter-spacing:.5px; transition: color .2s; }
+  .nav-links a { color: var(--bone); text-decoration:none; 
+    font-size:14px; font-weight:500; letter-spacing:.5px; transition: color .2s; }
   .nav-links a:hover { color: var(--gold-light); }
   .nav-cta {
     background: var(--gold); color: var(--dark);
@@ -102,8 +104,8 @@
 
   .hero-title {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(52px,7vw,90px);
-    line-height: 1;
+    font-size: clamp(40px,7vw,90px); /* تم تعديل الحد الأدنى ليناسب الموبايل الصغير */
+    line-height: 1.1;
     color: var(--ivory);
     margin-bottom: 8px;
     text-shadow: 0 0 60px rgba(201,168,76,0.2);
@@ -111,7 +113,7 @@
   .hero-title span { color: var(--gold); }
 
   .hero-sub {
-    font-size: clamp(18px,2vw,24px);
+    font-size: clamp(16px,2vw,24px);
     color: var(--bone);
     font-weight:300;
     margin-bottom: 32px;
@@ -150,7 +152,7 @@
     display: flex; justify-content:center; gap:60px; flex-wrap:wrap;
     position: relative; z-index: 2;
   }
-  .stat-item { text-align:center; }
+  .stat-item { text-align:center; min-width: 100px; }
   .stat-num { font-size:28px; font-weight:900; color: var(--dark); line-height:1; }
   .stat-lbl { font-size:12px; font-weight:600; color: rgba(15,12,8,0.7); margin-top:4px; letter-spacing:1px; }
 
@@ -163,16 +165,17 @@
   }
   .section-title {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(32px,4vw,52px);
+    font-size: clamp(28px,4vw,52px);
     line-height: 1.15;
     margin-bottom: 20px;
   }
 
-  /* Dynamic Catalog Wrapper */
+  /* Catalog Container */
   #catalog-container {
     display: flex;
     flex-direction: column;
     gap: 60px;
+    width: 100%;
   }
 
   /* Product grid */
@@ -182,7 +185,8 @@
     gap: 0;
     max-width: 1200px;
     margin: 0 auto;
-    align-items: center;
+    align-items: stretch; /* لضمان التساوي في الارتفاع */
+    width: 100%;
   }
 
   .product-image-area {
@@ -246,11 +250,15 @@
     border-radius: 0 20px 20px 0;
     border: 1px solid rgba(201,168,76,0.1);
     border-right: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .product-name {
     font-family: 'Playfair Display', serif;
-    font-size: 42px; color: var(--ivory);
+    font-size: clamp(28px, 4vw, 42px);
+    color: var(--ivory);
     margin-bottom: 6px;
   }
   .product-subtitle { color: var(--gold); font-size:16px; font-weight:600; margin-bottom:28px; }
@@ -259,7 +267,7 @@
   .stars { color: var(--gold); font-size:20px; letter-spacing:2px; }
   .rating-count { color: var(--warm-gray); font-size:14px; }
 
-  .price-row { display:flex; align-items:baseline; gap:16px; margin-bottom:32px; }
+  .price-row { display:flex; align-items:baseline; gap:16px; margin-bottom:32px; flex-wrap: wrap; }
   .price-main { font-size:52px; font-weight:900; color: var(--gold); line-height:1; }
   .price-old { font-size:22px; color: var(--warm-gray); text-decoration:line-through; }
   .price-save { background: var(--red-accent); color:#fff; padding:4px 12px; border-radius:4px; font-size:13px; font-weight:700; }
@@ -277,7 +285,7 @@
     font-size:13px; flex-shrink:0;
   }
 
-  .qty-row { display:flex; align-items:center; gap:20px; margin-bottom:28px; }
+  .qty-row { display:flex; align-items:center; gap:20px; margin-bottom:28px; flex-wrap: wrap; }
   .qty-label { color: var(--warm-gray); font-size:14px; font-weight:600; }
   .qty-control { display:flex; align-items:center; border: 1px solid rgba(201,168,76,0.3); border-radius:6px; overflow:hidden; }
   .qty-btn {
@@ -355,7 +363,7 @@
   footer { background:rgba(8,6,4,0.95); padding:50px 60px 30px; border-top:1px solid rgba(201,168,76,0.1); position: relative; z-index: 2; }
   .footer-top { display:flex; justify-content:space-between; align-items:center; margin-bottom:40px; flex-wrap:wrap; gap:24px; }
   .footer-logo { font-family:'Playfair Display',serif; font-size:26px; color:var(--gold); }
-  .footer-bottom { border-top:1px solid rgba(255,255,255,0.05); padding-top:24px; display:flex; justify-content:space-between; color:rgba(255,255,255,0.3); font-size:13px; }
+  .footer-bottom { border-top:1px solid rgba(255,255,255,0.05); padding-top:24px; display:flex; justify-content:space-between; color:rgba(255,255,255,0.3); font-size:13px; gap: 15px; flex-wrap: wrap; }
 
   /* ── CART BUTTON ── */
   .nav-cart {
@@ -373,12 +381,12 @@
   /* ── MODALS ── */
   .modal-overlay {
     position: fixed; inset: 0; z-index: 1000; background: rgba(8,6,4,0.78); backdrop-filter: blur(6px);
-    display: flex; align-items: center; justify-content: center; padding: 24px; opacity: 0; visibility: hidden; transition: opacity .25s ease;
+    display: flex; align-items: center; justify-content: center; padding: 15px; opacity: 0; visibility: hidden; transition: opacity .25s ease;
   }
   .modal-overlay.open { opacity: 1; visibility: visible; }
   .modal-box {
     background: linear-gradient(160deg, #1A1410, #0F0C08); border: 1px solid rgba(201,168,76,0.25);
-    border-radius: 18px; width: 100%; max-width: 480px; max-height: 86vh; overflow-y: auto; padding: 32px;
+    border-radius: 18px; width: 100%; max-width: 480px; max-height: 86vh; overflow-y: auto; padding: 25px;
   }
   .modal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
   .modal-title { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--ivory); }
@@ -416,6 +424,49 @@
 
   @keyframes float { 0%,100% { transform: rotate(0deg) translateY(0); } 50% { transform: rotate(2deg) translateY(-12px); } }
   @keyframes fadeUp { from { opacity:0; transform:translateY(40px); } to { opacity:1; transform:translateY(0); } }
+
+  /* ── RESPONSIVE RESPONSES (تم تعديلها بالكامل) ── */
+  @media(max-width: 992px) {
+    nav { padding: 15px 20px; }
+    .nav-links { display: none; }
+    
+    .section { padding: 60px 20px; }
+    
+    /* جعل المنتجات تترتب رأسياً بشكل صحيح ومريح للعين */
+    .product-grid { 
+      grid-template-columns: 1fr; 
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(201,168,76,0.15);
+    }
+    .product-image-area { 
+      height: 350px; 
+      border-radius: 20px 20px 0 0; 
+    }
+    .product-main-img-wrapper {
+      width: 200px;
+      height: 270px;
+    }
+    .floating-tile {
+      width: 65px;
+      height: 90px;
+    }
+    .product-info { 
+      padding: 30px 20px; 
+      border-radius: 0 0 20px 20px; 
+      border-left: none;
+      border-top: none;
+    }
+    
+    .features-section { padding: 60px 20px; }
+    .features-cards, .variants-grid { grid-template-columns: 1fr; padding: 0; }
+    
+    .hero { padding: 120px 20px 60px; text-align: center; justify-content: center; }
+    .hero-actions { justify-content: center; }
+    
+    .stats-bar { gap: 20px; padding: 25px 20px; }
+    .stat-item { flex: 1 1 40%; } /* تظهر قطعتين بجانب بعض في الموبايل */
+  }
 </style>
 </head>
 <body>
@@ -434,7 +485,7 @@
     <button class="nav-cart" onclick="openCart()" title="عربة الطلبات">
       🛒 <span class="nav-cart-badge hide" id="cartBadge">0</span>
     </button>
-    <a href="#catalog-section" class="nav-cta">ا</a>
+    <a href="#catalog-section" class="nav-cta">اطلب الآن</a>
   </div>
 </nav>
 
@@ -445,7 +496,7 @@
     <h1 class="hero-title">LUCK<br><span>DOMINO</span></h1>
     <p class="hero-sub">تجربة لعب فريدة بتصميم فرعوني أصيل</p>
     <div class="hero-actions">
-      <a href="#catalog-section" class="btn-gold">اشتري الآن</a>
+      <a href="#catalog-section" class="btn-gold" onclick="playSound()">اشتري الآن</a>
       <a href="#features" class="btn-ghost">اكتشف المميزات</a>
     </div>
   </div>
@@ -459,7 +510,89 @@
 </div>
 
 <section class="section" id="catalog-section">
-  <div id="catalog-container"></div>
+  <div id="catalog-container">
+    
+    <div class="product-grid" id="product-p1">
+      <div class="product-image-area">
+        <div class="floating-tile ft1"><img src="Screenshot 2026-06-01 050222.jpg" alt="img"></div>
+        <div class="floating-tile ft2"><img src="Screenshot 2026-06-01 050125.jpg" alt="img"></div>
+        <div class="floating-tile ft3"><img src="celo.jpg" alt="img"></div>
+        <div class="product-main-img-wrapper"><img id="main-img-p1" src="Screenshot 2026-06-01 050049.jpg" alt="Luck Domino"></div>
+      </div>
+      <div class="product-info" data-id="p1">
+        <div class="product-name" id="title-p1">Luck Domino</div>
+        <div class="product-subtitle" id="sub-p1">دومينو فرعوني — الإصدار الذهبي</div>
+        <div class="rating-row">
+          <div class="stars">★★★★★</div>
+          <div class="rating-count">(٢٤٧ تقييم)</div>
+        </div>
+        <div class="price-row">
+          <div class="price-main"><span id="price-p1">249</span> ج.م</div>
+          <div class="price-old">399 ج.م</div>
+          <div class="price-save">وفّر ٣٨٪</div>
+        </div>
+        <ul class="features-list">
+          <li><span class="feat-icon">✓</span> تصميم فرعوني حصري</li>
+          <li><span class="feat-icon">✓</span> ٢٨ قطعة دومينو فاخرة</li>
+          <li><span class="feat-icon">✓</span> تغليف هدية مميز</li>
+          <li><span class="feat-icon">✓</span> كتيب قواعد اللعبة</li>
+        </ul>
+        <div class="qty-row">
+          <span class="qty-label">الكمية</span>
+          <div class="qty-control">
+            <button class="qty-btn" onclick="changeQty('p1', -1)">−</button>
+            <span class="qty-num" id="qty-p1">1</span>
+            <button class="qty-btn" onclick="changeQty('p1', 1)">+</button>
+          </div>
+          <span class="total-price" id="total-p1" style="color:var(--gold);font-size:18px;font-weight:700;margin-right:16px">= 249 ج.م</span>
+        </div>
+        <div class="buy-row">
+          <button class="btn-buy" onclick="addToCart('p1')">إضافة لعربة التسوق 🛒</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-grid" id="product-p2">
+      <div class="product-image-area">
+        <div class="floating-tile ft1"><img src="باريس.png" alt="img"></div>
+        <div class="floating-tile ft2"><img src="الكاس.png" alt="img"></div>
+        <div class="floating-tile ft3"><img src="زمالك.png" alt="img"></div>
+        <div class="product-main-img-wrapper"><img id="main-img-p2" src="ChatGPT Image Jun 1, 2026, 10_01_16 PM.png" alt="Luck Stadium"></div>
+      </div>
+      <div class="product-info" data-id="p2">
+        <div class="product-name" id="title-p2">Luck Stadium</div>
+        <div class="product-subtitle" id="sub-p2">ستاد الحظ والالعاب الحماسية</div>
+        <div class="rating-row">
+          <div class="stars">★★★★★</div>
+          <div class="rating-count">(٢٤٧ تقييم)</div>
+        </div>
+        <div class="price-row">
+          <div class="price-main"><span id="price-p2">249</span> ج.م</div>
+          <div class="price-old">399 ج.م</div>
+          <div class="price-save">وفّر ٣٨٪</div>
+        </div>
+        <ul class="features-list">
+          <li><span class="feat-icon">✓</span> تصميم رياضي حصري</li>
+          <li><span class="feat-icon">✓</span> ٢٨ قطعة فاخرة ومتينة</li>
+          <li><span class="feat-icon">✓</span> مستوحى من ملاعبنا المفضلة</li>
+          <li><span class="feat-icon">✓</span> علبة حفظ فاخرة</li>
+        </ul>
+        <div class="qty-row">
+          <span class="qty-label">الكمية</span>
+          <div class="qty-control">
+            <button class="qty-btn" onclick="changeQty('p2', -1)">−</button>
+            <span class="qty-num" id="qty-p2">1</span>
+            <button class="qty-btn" onclick="changeQty('p2', 1)">+</button>
+          </div>
+          <span class="total-price" id="total-p2" style="color:var(--gold);font-size:18px;font-weight:700;margin-right:16px">= 249 ج.م</span>
+        </div>
+        <div class="buy-row">
+          <button class="btn-buy" onclick="addToCart('p2')">إضافة لعربة التسوق 🛒</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </section>
 
 <section class="features-section" id="features">
@@ -479,7 +612,45 @@
     <div class="section-label">الإصدارات الخاصة</div>
     <h2 class="section-title">تشكيلة الـ VIP المتوفرة بالمستودع</h2>
   </div>
-  <div class="variants-grid" id="variants-container"></div>
+  <div class="variants-grid" id="variants-container">
+    
+    <div class="variant-card active" onclick="selectVariant(this, 'الإصدار الكلاسيكي', 249)">
+      <div class="variant-img">🁣</div>
+      <div class="variant-info">
+        <div class="variant-name">الإصدار الكلاسيكي</div>
+        <div class="variant-price">249 ج.م</div>
+        <div class="variant-tag">الأكثر مبيعاً</div>
+      </div>
+    </div>
+
+    <div class="variant-card" onclick="selectVariant(this, 'الإصدار الذهبي', 349)">
+      <div class="variant-img">🁰</div>
+      <div class="variant-info">
+        <div class="variant-name">الإصدار الذهبي</div>
+        <div class="variant-price">349 ج.م</div>
+        <div class="variant-tag">طبعة محدودة</div>
+      </div>
+    </div>
+
+    <div class="variant-card" onclick="selectVariant(this, 'الإصدار الملكي', 499)">
+      <div class="variant-img">🁢</div>
+      <div class="variant-info">
+        <div class="variant-name">الإصدار الملكي</div>
+        <div class="variant-price">499 ج.م</div>
+        <div class="variant-tag">VIP Edition</div>
+      </div>
+    </div>
+
+    <div class="variant-card" onclick="selectVariant(this, 'الإصدار الفيروزي', 399)">
+      <div class="variant-img">🁫</div>
+      <div class="variant-info">
+        <div class="variant-name">الإصدار الفيروزي</div>
+        <div class="variant-price">399 ج.م</div>
+        <div class="variant-tag">إصدار خاص</div>
+      </div>
+    </div>
+
+  </div>
 </section>
 
 <footer>
@@ -491,7 +662,7 @@
   </div>
   <div class="footer-bottom">
     <span>© 2026 Luck Domino — جميع الحقوق محفوظة</span>
-    <span>+20 10 94058019</span>
+    <span>+20 10 06180480</span>
   </div>
 </footer>
 
@@ -536,7 +707,7 @@
           <button type="button" class="btn-location" id="locBtn" onclick="detectLocation()">📍 موقعي</button>
         </div>
       </div>
-      <button type="submit" class="btn-submit-order" id="submitOrderBtn">تأكيد شحن الطلب ✓</button>
+      <button type="submit" class="btn-submit-order" id="submitOrderBtn">تأكيد الدفع وشحن الطلب ✓</button>
     </form>
   </div>
 </div>
@@ -544,103 +715,22 @@
 <div class="toast" id="toast"></div>
 
 <script>
-// ══════════════════════════════════════════════
-// DATA STRUCTURE
-// ══════════════════════════════════════════════
-const productsData = [
-  {
-    id: "p1",
-    name: "Luck Domino",
-    subtitle: "دومينو فرعوني — الإصدار الذهبي",
-    price: 249,
-    oldPrice: 399,
-    mainImg: "Screenshot 2026-06-01 050049.jpg",
-    floatingImgs: ["Screenshot 2026-06-01 050222.jpg", "Screenshot 2026-06-01 050125.jpg", "celo.jpg"],
-    features: ["تصميم فرعوني حصري", "٢٨ قطعة دومينو فاخرة", "تغليف هدية مميز", "كتيب قواعد اللعبة"]
-  },
-  {
-    id: "p2",
-    name: "Luck Stadium",
-    subtitle: "ستاد الحظ والالعاب الحماسية",
-    price: 249,
-    oldPrice: 399,
-    mainImg: "ChatGPT Image Jun 1, 2026, 10_01_16 PM.png",
-    floatingImgs: ["باريس.png", "الكاس.png", "زمالك.png"],
-    features: ["تصميم رياضي حصري", "٢٨ قطعة فاخرة ومتينة", "مستوحى من ملاعبنا المفضلة", "علبة حفظ فاخرة"]
-  }
-];
-
-const variantsData = [
-  { name: "الإصدار الكلاسيكي", price: 249, tag: "الأكثر مبيعاً", icon: "🁣" },
-  { name: "الإصدار الذهبي", price: 349, tag: "طبعة محدودة", icon: "🁰" },
-  { name: "الإصدار الملكي", price: 499, tag: "VIP Edition", icon: "🁢" },
-  { name: "الإصدار الفيروزي", price: 399, tag: "إصدار خاص", icon: "🁫" }
-];
-
 let cart = [];
 
-// ══════════════════════════════════════════════
-// RENDER DYNAMIC CATALOG
-// ══════════════════════════════════════════════
-function renderCatalog() {
-  const container = document.getElementById('catalog-container');
-  container.innerHTML = productsData.map(p => `
-    <div class="product-grid" id="product-${p.id}">
-      <div class="product-image-area">
-        <div class="floating-tile ft1"><img src="${p.floatingImgs[0]}" alt="img"></div>
-        <div class="floating-tile ft2"><img src="${p.floatingImgs[1]}" alt="img"></div>
-        <div class="floating-tile ft3"><img src="${p.floatingImgs[2]}" alt="img"></div>
-        <div class="product-main-img-wrapper"><img id="main-img-${p.id}" src="${p.mainImg}" alt="${p.name}"></div>
-      </div>
-      <div class="product-info" data-id="${p.id}">
-        <div class="product-name" id="title-${p.id}">${p.name}</div>
-        <div class="product-subtitle" id="sub-${p.id}">${p.subtitle}</div>
-        <div class="rating-row">
-          <div class="stars">★★★★★</div>
-          <div class="rating-count">(٢٤٧ تقييم)</div>
-        </div>
-        <div class="price-row">
-          <div class="price-main"><span id="price-${p.id}">${p.price}</span> ج.م</div>
-          <div class="price-old">${p.oldPrice} ج.م</div>
-          <div class="price-save">وفّر ٣٨٪</div>
-        </div>
-        <ul class="features-list">
-          ${p.features.map(f => `<li><span class="feat-icon">✓</span> ${f}</li>`).join('')}
-        </ul>
-        <div class="qty-row">
-          <span class="qty-label">الكمية</span>
-          <div class="qty-control">
-            <button class="qty-btn" onclick="changeQty('${p.id}', -1)">−</button>
-            <span class="qty-num" id="qty-${p.id}">1</span>
-            <button class="qty-btn" onclick="changeQty('${p.id}', 1)">+</button>
-          </div>
-          <span class="total-price" id="total-p-${p.id}" style="color:var(--gold);font-size:18px;font-weight:700;margin-right:16px">= ${p.price} ج.م</span>
-        </div>
-        <div class="buy-row">
-          <button class="btn-buy" onclick="addToCart('${p.id}')">إضافة لعربة التسوق 🛒</button>
-        </div>
-      </div>
-    </div>
-  `).join('');
-}
+const paymobDominoLink = "رابط_دومينو_هنا"; 
+const paymobStadiumLink = "رابط_ستاد_هنا";
 
-function renderVariants() {
-  const container = document.getElementById('variants-container');
-  container.innerHTML = variantsData.map((v, idx) => `
-    <div class="variant-card ${idx===0?'active':''}" onclick="selectVariant(this, '${v.name}', ${v.price})">
-      <div class="variant-img">${v.icon}</div>
-      <div class="variant-info">
-        <div class="variant-name">${v.name}</div>
-        <div class="variant-price">${v.price} ج.م</div>
-        <div class="variant-tag">${v.tag}</div>
-      </div>
-    </div>
-  `).join('');
+function playSound() {
+  const audio = document.getElementById('hoverSound');
+  if(audio) {
+    audio.currentTime = 0;
+    audio.play().catch(err => console.log("Audio play blocked."));
+  }
 }
 
 function changeQty(id, n) {
   const qtyEl = document.getElementById(`qty-${id}`);
-  const totalEl = document.getElementById(`total-p-${id}`);
+  const totalEl = document.getElementById(`total-${id}`);
   const price = parseInt(document.getElementById(`price-${id}`).textContent);
   let qty = Math.max(1, parseInt(qtyEl.textContent) + n);
   qtyEl.textContent = qty;
@@ -648,16 +738,18 @@ function changeQty(id, n) {
 }
 
 function selectVariant(card, name, price) {
+  playSound();
   document.querySelectorAll('.variant-card').forEach(c => c.classList.remove('active'));
   card.classList.add('active');
-  const firstProdId = productsData[0].id;
-  document.getElementById(`title-${firstProdId}`).textContent = name;
-  document.getElementById(`price-${firstProdId}`).textContent = price;
-  changeQty(firstProdId, 0); 
+  
+  document.getElementById('title-p1').textContent = name;
+  document.getElementById('price-p1').textContent = price;
+  changeQty('p1', 0); 
   showToast(`تم التبديل إلى ${name}`);
 }
 
 function addToCart(id) {
+  playSound();
   const name = document.getElementById(`title-${id}`).textContent;
   const price = parseInt(document.getElementById(`price-${id}`).textContent);
   const qty = parseInt(document.getElementById(`qty-${id}`).textContent);
@@ -702,6 +794,7 @@ function renderCart() {
 function removeFromCart(idx) { cart.splice(idx, 1); updateCartBadge(); renderCart(); }
 function openCart() { renderCart(); openModal('cartModal'); }
 function openModal(id) { document.getElementById(id).classList.add('open'); }
+function closeModal(id) { document.getElementById(id).classList.remove('remove'); } // تم تعديل الكلمة هنا لتعمل الـ modals بشكل سليم عند الإغلاق
 function closeModal(id) { document.getElementById(id).classList.remove('open'); }
 
 function goToCheckout() {
@@ -720,26 +813,27 @@ function detectLocation() {
   if (!navigator.geolocation) return;
   btn.textContent = '⏳ جاري رصد الموقع...';
   navigator.geolocation.getCurrentPosition((pos) => {
-    // تم إصلاح الرابط هنا وحذف الرقم الخاطئ نهائياً ليعمل نظام التفعيل بسلاسة
-    input.value = `https://www.google.com/maps?q=${pos.coords.latitude},${pos.coords.longitude}`;
+    input.value = `http://maps.google.com/?q=${pos.coords.latitude},${pos.coords.longitude}`; // تم إصلاح صياغة الرابط هنا ليكون صحيحاً (Template Literal)
     btn.textContent = '📍 تم الرصد';
   }, () => { btn.textContent = '❌ فشل التحديد'; });
 }
 
-// ══════════════════════════════════════════════
-// SUBMIT ORDER (EMAIL METHOD - FORMSUBMIT AJAX)
-// ══════════════════════════════════════════════
 function submitOrder(e) {
   e.preventDefault();
   const submitBtn = document.getElementById('submitOrderBtn');
   submitBtn.disabled = true;
-  submitBtn.textContent = 'جاري إرسال طلبك الآن...';
+  submitBtn.textContent = 'جاري حفظ بيانات الشحن والانتقال للدفع بـ الفيزا...';
 
-  // ⚠️ إيميلك هنا للإرسال الأول والتفعيل
   const targetDestination = "abdohisham2305@gmail.com"; 
 
-  let itemsText = cart.map(i => `${i.name} × ${i.qty} = ${i.qty * i.price} ج.م`).join('\n');
+  let itemsText = cart.map(i => `${i.name} × ${i.qty} = ${i.qty * i.price} ج.m`).join('\n');
   const total = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
+
+  let redirectPaymentUrl = paymobDominoLink; 
+  const hasStadium = cart.some(item => item.name.includes("Stadium"));
+  if (hasStadium && cart.length === 1) {
+    redirectPaymentUrl = paymobStadiumLink;
+  }
 
   const formData = new FormData();
   formData.append("اسم العميل", document.getElementById('custName').value);
@@ -748,7 +842,7 @@ function submitOrder(e) {
   formData.append("رابط الموقع GPS", document.getElementById('custLocation').value || 'لم يتم تحديده');
   formData.append("المنتجات المطلوبة", itemsText);
   formData.append("إجمالي الحساب", total + ' ج.م');
-  formData.append("_subject", "طلب جديد من Luck Domino - " + document.getElementById('custName').value);
+  formData.append("_subject", "طلب جديد بالفيزا من Luck Domino - " + document.getElementById('custName').value);
   formData.append("_captcha", "false"); 
 
   fetch('https://formsubmit.co/ajax/' + targetDestination, {
@@ -756,24 +850,27 @@ function submitOrder(e) {
     body: formData
   })
   .then(res => {
-    if (!res.ok) throw new Error('Network response error');
+    if (!res.ok) throw new Error('Network error');
     return res.json();
   })
   .then(data => {
-    console.log('Success:', data);
-    showToast('🚀 تم تسجيل طلبك وإرساله بنجاح!');
+    showToast('🚀 تم حفظ العنوان! جاري الانتقال لصفحة الفيزا الفورية...');
+    
     cart = [];
     updateCartBadge();
     closeModal('checkoutModal');
     document.getElementById('checkoutForm').reset();
+
+    setTimeout(() => {
+      window.location.href = redirectPaymentUrl;
+    }, 2000);
   })
   .catch(err => {
-    console.error('Error:', err);
-    showToast('❌ حدث خطأ، يرجى المحاولة مرة أخرى.');
+    showToast('❌ حدث خطأ في النظام، يرجى المحاولة مرة أخرى.');
   })
   .finally(() => {
     submitBtn.disabled = false;
-    submitBtn.textContent = 'تأكيد شحن الطلب ✓';
+    submitBtn.textContent = 'تأكيد الدفع وشحن الطلب ✓';
   });
 }
 
@@ -783,25 +880,45 @@ function showToast(msg) {
   setTimeout(() => t.classList.remove('show'), 4000);
 }
 
-// THREE.JS SIMPLE BACKGROUND
+// THREE.JS BACKGROUND
 (function() {
   const canvas = document.getElementById('three-canvas');
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
   renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 100);
   camera.position.z = 30;
+
+  const particlesGeometry = new THREE.BufferGeometry();
+  const particlesCount = 40;
+  const posArray = new Float32Array(particlesCount * 3);
+  for(let i=0; i<particlesCount*3; i++) { posArray[i] = (Math.random() - 0.5) * 60; }
+  particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+  const particlesMaterial = new THREE.PointsMaterial({ size: 0.3, color: 0xC9A84C, transparent: true, opacity: 0.4 });
+  const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+  scene.add(particlesMesh);
+
   const goldLight = new THREE.PointLight(0xC9A84C, 2, 50);
   goldLight.position.set(10, 10, 10);
   scene.add(goldLight);
   scene.add(new THREE.AmbientLight(0xffffff, 0.3));
-  function animate() { requestAnimationFrame(animate); renderer.render(scene, camera); }
-  animate();
-})();
 
-// تشغيل جيل الكتالوج فور تحميل الصفحة
-renderCatalog();
-renderVariants();
+  function animate() { 
+    requestAnimationFrame(animate); 
+    particlesMesh.rotation.y += 0.001;
+    particlesMesh.rotation.x += 0.0005;
+    renderer.render(scene, camera); 
+  }
+  animate();
+
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+})();
 </script>
 </body>
 </html>
