@@ -911,8 +911,8 @@ function submitOrder(e) {
   formData.append("عنوان الشحن", document.getElementById('custAddress').value);
   formData.append("رابط الموقع GPS", document.getElementById('custLocation').value || 'لم يتم تحديده');
   formData.append("المنتجات المطلوبة", itemsText);
-  formData.append("إجمالي الحساب (كاش عند الاستلام)", total + ' ج.م');
-  formData.append("_subject", "📦 طلب كاش جديد من Luck Domino - " + document.getElementById('custName').value);
+  formData.append("إجمالي الحساب ", total + ' ج.م');
+  formData.append("_subject", " طلب جديد  Luck Domino - " + document.getElementById('custName').value);
   formData.append("_captcha", "false"); 
   
   // إجبار السيرفر على العودة لنفس الصفحة بدلاً من 404 الخارجية
@@ -927,7 +927,7 @@ function submitOrder(e) {
     return res.json();
   })
   .then(data => {
-    alert('🎉 تم استلام طلبك بنجاح وسيتواصل معك الدعم الفني لتأكيد الشحن فوراً!');
+    alert(' تم استلام طلبك بنجاح وسيتواصل معك الدعم الفني لتأكيد الشحن فوراً!');
     cart = [];
     updateCartBadge();
     closeModal('checkoutModal');
@@ -935,7 +935,7 @@ function submitOrder(e) {
   })
   .catch(err => {
     // حماية إضافية تضمن خروج العميل بنجاح حتى وإن حدث بطء في استجابة شبكة السيرفر الخارجية
-    alert('🎉 تم استلام طلبك بنجاح وسيتواصل معك الدعم الفني لتأكيد الشحن فوراً!');
+    alert(' تم استلام طلبك بنجاح وسيتواصل معك الدعم الفني لتأكيد الشحن فوراً!');
     cart = [];
     updateCartBadge();
     closeModal('checkoutModal');
