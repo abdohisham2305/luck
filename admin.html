@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>لوحة التحكم الملكية — Luck Domino</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2 family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
   <style>
     :root {
       --gold: #C9A84C;
@@ -129,7 +129,7 @@
   <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
 
   <script>
-    // ⚠️ ضع هنا الـ firebaseConfig الخاص بمشروعك المأخوذ من إعدادات Firebase Console
+    // ⚠️ ضع هنا الـ firebaseConfig الخاص بمشروعك الفعلي من Firebase Console
     const firebaseConfig = {
       apiKey: "ضع_هنا_الـ_API_KEY",
       authDomain: "luck-domino.firebaseapp.com",
@@ -145,8 +145,8 @@
 
     // دالة تحديث المنتج في الـ Realtime Database فوراً
     function updateProduct(id) {
-      const newPrice = parseInt(document.getElementById(`admin-price-0{id}`).value);
-      const newSub = document.getElementById(`admin-sub-0{id}`).value;
+      const newPrice = parseInt(document.getElementById(`admin-price-${id}`).value);
+      const newSub = document.getElementById(`admin-sub-${id}`).value;
 
       if (!newPrice || !newSub) {
         alert("يرجى ملء الحقول الخاصة بالمنتج قبل الحفظ!");
@@ -157,7 +157,7 @@
         price: newPrice,
         subtitle: newSub
       }).then(() => {
-        alert(`تم تحديث بيانات المنتج ${id} بنجاح في السيرفر وموقع العملاء!`);
+        alert(`تم تحديث بيانات المنتج ${id} بنجاح في السيرفر وموقع العملاء! 🎉`);
       }).catch(err => {
         alert("خطأ أثناء الاتصال بـ Firebase: " + err.message);
       });
