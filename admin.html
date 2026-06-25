@@ -92,8 +92,8 @@
         <input type="number" id="admin-price-p1" placeholder="مثال: 249">
       </div>
       <div class="form-group">
-        <label>الوصف أو العرض الفرعي:</label>
-        <input type="text" id="admin-sub-p1" placeholder="مثال: دومينو فرعوني — الإصدار الذهبي">
+        <label>الوصف أو العرض الفرعي (اختياري):</label>
+        <input type="text" id="admin-sub-p1" placeholder="تعديل الوصف أو اتركه فارغاً">
       </div>
       <button onclick="updateProduct('p1')">تحديث وإرسال التعديلات</button>
     </div>
@@ -105,8 +105,8 @@
         <input type="number" id="admin-price-p2" placeholder="مثال: 399">
       </div>
       <div class="form-group">
-        <label>الوصف أو العرض الفرعي:</label>
-        <input type="text" id="admin-sub-p2" placeholder="مثال: ستاد الحظ والألعاب الحماسية">
+        <label>الوصف أو العرض الفرعي (اختياري):</label>
+        <input type="text" id="admin-sub-p2" placeholder="تعديل الوصف أو اتركه فارغاً">
       </div>
       <button onclick="updateProduct('p2')">تحديث وإرسال التعديلات</button>
     </div>
@@ -118,8 +118,8 @@
         <input type="number" id="admin-price-p3" placeholder="مثال: 599">
       </div>
       <div class="form-group">
-        <label>الوصف أو العرض الفرعي:</label>
-        <input type="text" id="admin-sub-p3" placeholder="مثال: باقة الـ VIP الملكية المتكاملة">
+        <label>الوصف أو العرض الفرعي (اختياري):</label>
+        <input type="text" id="admin-sub-p3" placeholder="تعديل الوصف أو اتركه فارغاً">
       </div>
       <button onclick="updateProduct('p3')">تحديث وإرسال التعديلات</button>
     </div>
@@ -129,7 +129,6 @@
   <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
 
   <script>
-    // تم إدخال بيانات مشروعك الفعلي والربط بقاعدة البيانات هنا بنجاح
     const firebaseConfig = {
       apiKey: "AIzaSyC7M5MxzE6Q1K9RzeeyKYYnOrJZw4pS33o",
       authDomain: "luck-domino.firebaseapp.com",
@@ -148,16 +147,24 @@
       const newPrice = parseInt(document.getElementById(`admin-price-${id}`).value);
       const newSub = document.getElementById(`admin-sub-${id}`).value;
 
-      if (!newPrice || !newSub) {
-        alert("يرجى ملء الحقول الخاصة بالمنتج قبل الحفظ!");
+      // التأكد فقط من أن السعر تم إدخاله ويكون رقماً صحيحاً
+      if (isNaN(newPrice)) {
+        alert("يرجى إدخال السعر الجديد أولاً قبل الحفظ!");
         return;
       }
 
-      database.ref('products/' + id).set({
-        price: newPrice,
-        subtitle: newSub
-      }).then(() => {
-        alert(`تم تحديث بيانات المنتج ${id} بنجاح في السيرفر وموقع العملاء! 🎉`);
+      // تجهيز البيانات المراد إرسالها
+      let updateData = { price: newPrice };
+
+      // إذا كتب المستخدم وصفاً جديداً، نقوم بإرساله مع السعر، وإلا نرسل السعر فقط
+      if (newSub.trim() !== "") {
+        updateData.subtitle = newSub;
+      }
+
+      // تحديث البيانات في فايربيز (باستخدام update لكي لا يمسح الوصف القديم لو تركته فارغاً)
+      database.ref('products/' + id).update(updateData)
+      .then(() => {
+        alert(`تم تحديث السعر للمنتج ${id} بنجاح! 🎉`);
       }).catch(err => {
         alert("خطأ أثناء الاتصال بـ Firebase: " + err.message);
       });
