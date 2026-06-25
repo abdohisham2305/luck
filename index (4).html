@@ -104,7 +104,7 @@
 
   .hero-title {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(40px,7vw,90px); /* تم تعديل الحد الأدنى ليناسب الموبايل الصغير */
+    font-size: clamp(40px,7vw,90px);
     line-height: 1.1;
     color: var(--ivory);
     margin-bottom: 8px;
@@ -185,7 +185,7 @@
     gap: 0;
     max-width: 1200px;
     margin: 0 auto;
-    align-items: stretch; /* لضمان التساوي في الارتفاع */
+    align-items: stretch;
     width: 100%;
   }
 
@@ -220,6 +220,34 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+
+  /* 🔘 زِر تشغيل الفيديو داخل غلاف الصورة */
+  .btn-play-video {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(15, 12, 8, 0.85);
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    padding: 8px 18px;
+    border-radius: 30px;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    z-index: 5;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    white-space: nowrap;
+  }
+  .btn-play-video:hover {
+    background: var(--gold);
+    color: var(--dark);
+    transform: translateX(-50%) scale(1.05);
+    box-shadow: 0 4px 20px rgba(201,168,76,0.4);
   }
 
   .floating-tile {
@@ -425,14 +453,13 @@
   @keyframes float { 0%,100% { transform: rotate(0deg) translateY(0); } 50% { transform: rotate(2deg) translateY(-12px); } }
   @keyframes fadeUp { from { opacity:0; transform:translateY(40px); } to { opacity:1; transform:translateY(0); } }
 
-  /* ── RESPONSIVE RESPONSES (تم تعديلها بالكامل) ── */
+  /* ── RESPONSIVE RESPONSES ── */
   @media(max-width: 992px) {
     nav { padding: 15px 20px; }
     .nav-links { display: none; }
     
     .section { padding: 60px 20px; }
     
-    /* جعل المنتجات تترتب رأسياً بشكل صحيح ومريح للعين */
     .product-grid { 
       grid-template-columns: 1fr; 
       border-radius: 20px;
@@ -451,6 +478,11 @@
       width: 65px;
       height: 90px;
     }
+    .btn-play-video {
+      padding: 10px 20px;
+      font-size: 14px;
+      bottom: 20px;
+    }
     .product-info { 
       padding: 30px 20px; 
       border-radius: 0 0 20px 20px; 
@@ -465,7 +497,7 @@
     .hero-actions { justify-content: center; }
     
     .stats-bar { gap: 20px; padding: 25px 20px; }
-    .stat-item { flex: 1 1 40%; } /* تظهر قطعتين بجانب بعض في الموبايل */
+    .stat-item { flex: 1 1 40%; }
   }
 </style>
 </head>
@@ -517,7 +549,10 @@
         <div class="floating-tile ft1"><img src="Screenshot 2026-06-01 050222.jpg" alt="img"></div>
         <div class="floating-tile ft2"><img src="Screenshot 2026-06-01 050125.jpg" alt="img"></div>
         <div class="floating-tile ft3"><img src="celo.jpg" alt="img"></div>
-        <div class="product-main-img-wrapper"><img id="main-img-p1" src="Screenshot 2026-06-01 050049.jpg" alt="Luck Domino"></div>
+        <div class="product-main-img-wrapper">
+          <img id="main-img-p1" src="Screenshot 2026-06-01 050049.jpg" alt="Luck Domino">
+          <button class="btn-play-video" onclick="openVideoModal('https://www.youtube.com/embed/رابط_فيديو_اللعبة1_هنا?autoplay=1')">▶ فيديو المعاينة</button>
+        </div>
       </div>
       <div class="product-info" data-id="p1">
         <div class="product-name" id="title-p1">Luck Domino</div>
@@ -557,7 +592,10 @@
         <div class="floating-tile ft1"><img src="باريس.png" alt="img"></div>
         <div class="floating-tile ft2"><img src="الكاس.png" alt="img"></div>
         <div class="floating-tile ft3"><img src="زمالك.png" alt="img"></div>
-        <div class="product-main-img-wrapper"><img id="main-img-p2" src="ChatGPT Image Jun 1, 2026, 10_01_16 PM.png" alt="Luck Stadium"></div>
+        <div class="product-main-img-wrapper">
+          <img id="main-img-p2" src="ChatGPT Image Jun 1, 2026, 10_01_16 PM.png" alt="Luck Stadium">
+          <button class="btn-play-video" onclick="openVideoModal('https://www.youtube.com/embed/رابط_فيديو_اللعبة2_هنا?autoplay=1')">▶ فيديو المعاينة</button>
+        </div>
       </div>
       <div class="product-info" data-id="p2">
         <div class="product-name" id="title-p2">Luck Stadium</div>
@@ -588,6 +626,49 @@
         </div>
         <div class="buy-row">
           <button class="btn-buy" onclick="addToCart('p2')">إضافة لعربة التسوق 🛒</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-grid" id="product-p3">
+      <div class="product-image-area">
+        <div class="floating-tile ft1"><img src="Screenshot 2026-06-01 050222.jpg" alt="img"></div>
+        <div class="floating-tile ft2"><img src="Screenshot 2026-06-01 050125.jpg" alt="img"></div>
+        <div class="floating-tile ft3"><img src="celo.jpg" alt="img"></div>
+        <div class="product-main-img-wrapper">
+          <img id="main-img-p3" src="Screenshot 2026-06-01 050049.jpg" alt="Luck Domino VIP">
+          <button class="btn-play-video" onclick="openVideoModal('https://www.youtube.com/embed/رابط_فيديو_اللعبة3_هنا?autoplay=1')">▶ فيديو المعاينة</button>
+        </div>
+      </div>
+      <div class="product-info" data-id="p3">
+        <div class="product-name" id="title-p3">Luck Domino VIP</div>
+        <div class="product-subtitle" id="sub-p3">إصدار كبار الشخصيات الفاخر والمحدود جداً</div>
+        <div class="rating-row">
+          <div class="stars">★★★★★</div>
+          <div class="rating-count">(١٢0 تقييم)</div>
+        </div>
+        <div class="price-row">
+          <div class="price-main"><span id="price-p3">349</span> ج.m</div>
+          <div class="price-old">499 ج.م</div>
+          <div class="price-save">وفّر ٣٠٪</div>
+        </div>
+        <ul class="features-list">
+          <li><span class="feat-icon">✓</span> علبة خشبية بنقوش محفورة بالليزر</li>
+          <li><span class="feat-icon">✓</span> قطع ثقيلة الوزن ومقاومة للكسر</li>
+          <li><span class="feat-icon">✓</span> ألوان ذهبية ميتاليك براقة</li>
+          <li><span class="feat-icon">✓</span> شهادة أصالة مرقمة للإصدار</li>
+        </ul>
+        <div class="qty-row">
+          <span class="qty-label">الكمية</span>
+          <div class="qty-control">
+            <button class="qty-btn" onclick="changeQty('p3', -1)">−</button>
+            <span class="qty-num" id="qty-p3">1</span>
+            <button class="qty-btn" onclick="changeQty('p3', 1)">+</button>
+          </div>
+          <span class="total-price" id="total-p3" style="color:var(--gold);font-size:18px;font-weight:700;margin-right:16px">= 349 ج.م</span>
+        </div>
+        <div class="buy-row">
+          <button class="btn-buy" onclick="addToCart('p3')">إضافة لعربة التسوق 🛒</button>
         </div>
       </div>
     </div>
@@ -666,6 +747,18 @@
   </div>
 </footer>
 
+<div class="modal-overlay" id="videoModal">
+  <div class="modal-box" style="max-width: 720px; padding: 15px;">
+    <div class="modal-header" style="margin-bottom: 10px;">
+      <div class="modal-title">🎥 معاينة اللعبة واستعراضها</div>
+      <button class="modal-close" onclick="closeVideoModal()">✕</button>
+    </div>
+    <div style="position:relative; padding-top: 56.25%; background:#000; border-radius:10px; overflow:hidden;">
+      <iframe id="videoPlayer" src="فيديو.mp4" style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+  </div>
+</div>
+
 <div class="modal-overlay" id="cartModal">
   <div class="modal-box">
     <div class="modal-header">
@@ -714,11 +807,54 @@
 
 <div class="toast" id="toast"></div>
 
+<!-- مكتبات فايربيز المطلوبة للتشغيل لايف متوافقة مع إصدار لوحة التحكم -->
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+
 <script>
+// البيانات الفعلية لمشروعك تم تفعيلها هنا للربط مع السيرفر
+const firebaseConfig = {
+  apiKey: "AIzaSyC7M5MxzE6Q1K9RzeeyKYYnOrJZw4pS33o",
+  authDomain: "luck-domino.firebaseapp.com",
+  databaseURL: "https://luck-domino-default-rtdb.firebaseio.com",
+  projectId: "luck-domino",
+  storageBucket: "luck-domino.firebasestorage.app",
+  messagingSenderId: "49023852870",
+  appId: "1:49023852870:web:1c55a3eb9db11f7d550547",
+  measurementId: "G-Y0Y68TDB8L"
+};
+
+firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
+
+// الاستماع للتغييرات في السيرفر وتحديث واجهة المستخدم فوراً لايف
+database.ref('products').on('value', (snapshot) => {
+  const data = snapshot.val();
+  if (data) {
+    Object.keys(data).forEach((id) => {
+      const priceElement = document.getElementById(`price-${id}`);
+      const subElement = document.getElementById(`sub-${id}`);
+      
+      // تحديث السعر والوصف في الصفحة الأساسية بناءً على المدخلات القادمة من الأدمن
+      if (priceElement && data[id].price) {
+        priceElement.textContent = data[id].price;
+      }
+      if (subElement && data[id].subtitle) {
+        subElement.textContent = data[id].subtitle;
+      }
+      
+      // إعادة حساب كمية المنتج الحالي لكي لا يظهر تضارب في السعر الإجمالي الفوري
+      changeQty(id, 0);
+    });
+  }
+});
+
 let cart = [];
 
+// ⚠️ ضع روابط الدفع الجاهزة من Paymob هنا لتعمل إعادة التوجيه تلقائياً
 const paymobDominoLink = "رابط_دومينو_هنا"; 
 const paymobStadiumLink = "رابط_ستاد_هنا";
+const paymobVIPLink = "رابط_اللعبة_الثالثة_VIP_هنا";
 
 function playSound() {
   const audio = document.getElementById('hoverSound');
@@ -728,10 +864,28 @@ function playSound() {
   }
 }
 
+function openVideoModal(videoUrl) {
+  playSound();
+  const modal = document.getElementById('videoModal');
+  const player = document.getElementById('videoPlayer');
+  player.src = videoUrl;
+  modal.classList.add('open');
+}
+
+function closeVideoModal() {
+  const modal = document.getElementById('videoModal');
+  const player = document.getElementById('videoPlayer');
+  modal.classList.remove('open');
+  player.src = ""; 
+}
+
 function changeQty(id, n) {
   const qtyEl = document.getElementById(`qty-${id}`);
   const totalEl = document.getElementById(`total-${id}`);
-  const price = parseInt(document.getElementById(`price-${id}`).textContent);
+  const priceEl = document.getElementById(`price-${id}`);
+  if(!qtyEl || !totalEl || !priceEl) return;
+  
+  const price = parseInt(priceEl.textContent);
   let qty = Math.max(1, parseInt(qtyEl.textContent) + n);
   qtyEl.textContent = qty;
   totalEl.textContent = `= ${qty * price} ج.م`;
@@ -794,7 +948,6 @@ function renderCart() {
 function removeFromCart(idx) { cart.splice(idx, 1); updateCartBadge(); renderCart(); }
 function openCart() { renderCart(); openModal('cartModal'); }
 function openModal(id) { document.getElementById(id).classList.add('open'); }
-function closeModal(id) { document.getElementById(id).classList.remove('remove'); } // تم تعديل الكلمة هنا لتعمل الـ modals بشكل سليم عند الإغلاق
 function closeModal(id) { document.getElementById(id).classList.remove('open'); }
 
 function goToCheckout() {
@@ -813,7 +966,7 @@ function detectLocation() {
   if (!navigator.geolocation) return;
   btn.textContent = '⏳ جاري رصد الموقع...';
   navigator.geolocation.getCurrentPosition((pos) => {
-    input.value = `http://maps.google.com/?q=${pos.coords.latitude},${pos.coords.longitude}`; // تم إصلاح صياغة الرابط هنا ليكون صحيحاً (Template Literal)
+    input.value = `http://googleusercontent.com/maps.google.com/local?q=${pos.coords.latitude},${pos.coords.longitude}`;
     btn.textContent = '📍 تم الرصد';
   }, () => { btn.textContent = '❌ فشل التحديد'; });
 }
@@ -826,13 +979,17 @@ function submitOrder(e) {
 
   const targetDestination = "abdohisham2305@gmail.com"; 
 
-  let itemsText = cart.map(i => `${i.name} × ${i.qty} = ${i.qty * i.price} ج.m`).join('\n');
+  let itemsText = cart.map(i => `${i.name} × ${i.qty} = ${i.qty * i.price} ج.م`).join('\n');
   const total = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
 
   let redirectPaymentUrl = paymobDominoLink; 
   const hasStadium = cart.some(item => item.name.includes("Stadium"));
+  const hasVIP = cart.some(item => item.name.includes("VIP"));
+
   if (hasStadium && cart.length === 1) {
     redirectPaymentUrl = paymobStadiumLink;
+  } else if (hasVIP && cart.length === 1) {
+    redirectPaymentUrl = paymobVIPLink;
   }
 
   const formData = new FormData();
